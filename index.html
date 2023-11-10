@@ -13,7 +13,42 @@
 
 <body>
   <div id="app">
+    <h1>Pimec Celebrities Contacts</h1>
+    <section>
+      <h2>Filtros</h2>
+      <label for="full-name">Name and Surname</label>
+      <input v-model="fullName" type="text" name="full-name" id="full-name">
 
+      <label for="popularity">Popularity</label>
+      <input v-model="popularity" type="number" name="popularity" id="">
+      <label for="award">Award</label>
+      <input v-model="award" type="" name="award" id="">
+    </section>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Picture</th>
+          <th>Name</th>
+          <th>Popularty</th>
+          <th>Won an Oscar</th>
+          <th>Won an Emmy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="contact in filteredContacts">
+          <td><img style="width: 100px" :src ="contact.pictureUrl" :alt="contact.name" ></td>
+          <td>{{ contact.name }}</td>
+          <td>{{ contact.popularity.toFixed(2) }}</td>
+          <!-- <td><span v-if="contact.wonOscar"> 🏆 </span></td>
+            OR
+          <td><span v-show="contact.wonEmmy"> 🏆 </span></td> 
+            OR -->
+          <td>{{contact.wonOscar? " 🏆 ": ""}}</td>
+          <td>{{contact.wonEmmy? " 🏆 ": ""}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <script type="module" src="app.js"></script>
 </body>

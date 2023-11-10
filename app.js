@@ -478,6 +478,15 @@ createApp({
       },
     ]);
 
-    return { allContacts };
+    const fullName = ref("");
+
+    const filteredContacts = computed (() => {
+      console.log("Valor del filtro: ", fullName.value);
+
+      return allContacts.value.filter((c) => 
+      c.name.toLowerCase().includes(fullName.value.toLowerCase()));
+    });
+
+    return { allContacts, fullName, filteredContacts };
   },
 }).mount("#app");
